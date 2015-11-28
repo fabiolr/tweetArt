@@ -23,14 +23,7 @@ int woeid = 2450022; // Miami
 void setup() {
     size(1200,710);
 
-  ConfigurationBuilder cb = new ConfigurationBuilder();
-  cb.setOAuthConsumerKey("gIpvudUKCIsur15gtT2KARC49");   
-  cb.setOAuthConsumerSecret("QbJH31dBFAfT3otkVZ3DyPDYKg3zEDjtjRAbZacbHUnwRnot3D");   
-  cb.setOAuthAccessToken("14476591-H1CVAdwSkJIHb77JYrjwKbtKpB65fYvL9fSWDM5pM");   
-  cb.setOAuthAccessTokenSecret("hbRsaFBWptRdum47K8f0JbfSh21tAhX33ZpHzyNRSOxaa");
-
-    TwitterFactory tf = new TwitterFactory(cb.build());
-    twitter = tf.getInstance();
+    twitterConnect();
     doTrends();
     currentTweet = 0;
     currentTrend = 0;
