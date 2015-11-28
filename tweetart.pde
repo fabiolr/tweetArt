@@ -18,7 +18,7 @@ int woeid = 2450022; // Miami
 
 
 void setup() {
-    size(1200,700);
+    size(1200,710);
 
   ConfigurationBuilder cb = new ConfigurationBuilder();
   cb.setOAuthConsumerKey("gIpvudUKCIsur15gtT2KARC49");   
