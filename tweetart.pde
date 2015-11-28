@@ -11,6 +11,9 @@ ResponseList<Trends> dailyTrends;
 Trend[] trend;
 int currentTweet;
 int currentTrend;
+PFont f;
+
+
 
 // Choose location for Trending topics and Search Query for displayed tweets here.
 String searchString = "Miami";
@@ -36,7 +39,15 @@ void setup() {
     thread("refreshTweets");
     thread("refreshTrends");
 
+
+  // Create the font
+  printArray(PFont.list());
+  f = createFont("Nexa Light.otf", 18);
+  textFont(f);
+
+
 }
+
 
 
 void refreshTweets() {

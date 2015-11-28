@@ -1,4 +1,5 @@
 
+
 void draw() {
     
   fill(0, 20);
@@ -13,12 +14,15 @@ void draw() {
 
     Status status = tweets.get(currentTweet);
 
+//  background(102);
+
+  
     fill(200);
-    text(status.getText(), random(width), random(height), 300, 200);
-    //text(trend[1].getName(), random(width), random(height), 300, 200);
+    text(status.getText(), random(width), random(height), 300, 100);
+    //text(trend[1].getName(), random(width-300), random(height-150), 300, 200);
     //text(trend[int(random(10))].getName(), random(width), random(height), 300, 200);
 
     
 
-    delay(500);
+    delay(1000);
 }
