@@ -1,3 +1,6 @@
+// code by @fabiolr
+// will get trending topics for chosen city, then search for tweets with those 10 keywords, and display them randomly in a nice, artfull style
+
 import twitter4j.conf.*;
 import twitter4j.*;
 import twitter4j.auth.*;
@@ -26,7 +29,7 @@ PFont f;
 
 
 
-// Choose location for Trending topics and Search Query for displayed tweets here.
+// Set location for Trending topics and failover Search Query for displayed tweets here.
 String searchString = "Miami";
 int woeid = 2450022; // Miami
 
@@ -51,6 +54,7 @@ void setup() {
     
     // Connect to Twitter, get the data 
     twitterConnect();
+
     getTrends();
     currentTweet = 0;
     currentTrend = 0;
@@ -62,7 +66,7 @@ void setup() {
 
 
   // Set the font
-  printArray(PFont.list());
+ // printArray(PFont.list());
   f = createFont("Nexa Light.otf", 12);
   textFont(f);
 
@@ -103,6 +107,9 @@ void getNewTweets() {
         Query query = new Query(searchString);
         QueryResult result = twitter.search(query);
         tweets = result.getTweets();
+        int remQ = twitter.getRateLimitStatus().get("/search/tweets").getRemaining();
+        int remT = twitter.getRateLimitStatus().get("/trends/place").getRemaining();
+        println("Remaining " + remQ + " search calls and " + remT + " trends calls");
     }
     catch (TwitterException te)
     {

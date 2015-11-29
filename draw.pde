@@ -33,6 +33,15 @@ void draw() {
     b.display();
   }
 
+  // Show current trending
+  
+  
+  stroke(0);
+  for (int t = 0; t < 10; t++) {
+             text(trend[t].getName(), 20, 20+(t*50), 300, 200);
+            }
+
+
   // Delete boxes that left screen, from box2d and list
   // (note they have to be deleted from both the box2d world and our list
   for (int i = boxes.size()-1; i >= 0; i--) {
