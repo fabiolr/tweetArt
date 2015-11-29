@@ -24,7 +24,7 @@ void setup() {
     size(1200,710);
 
     twitterConnect();
-    doTrends();
+    getTrends();
     currentTweet = 0;
     currentTrend = 0;
     getNewTweets();
@@ -33,7 +33,7 @@ void setup() {
     thread("refreshTrends");
 
 
-  // Create the font
+  // Set the font
   printArray(PFont.list());
   f = createFont("Nexa Light.otf", 18);
   textFont(f);
@@ -47,7 +47,8 @@ void refreshTweets() {
     while (true)
     {
         getNewTweets();
-        println("Updated Tweets");
+        println("Updated Tweets " + currentTweet);
+        currentTweet ++;
         delay(30000);
     }
 }
@@ -56,8 +57,9 @@ void refreshTweets() {
 void refreshTrends() {
     while (true)
     {
-        doTrends();
-        println("Updated Trends");
+        getTrends();
+        println("Updated Trends " + currentTrend);
+        currentTrend ++;
         delay(300000);
     }
 }
@@ -81,7 +83,7 @@ void getNewTweets() {
     }
 }
 
-void doTrends() {
+void getTrends() {
     try {
            //Trends dailyTrends = twitter.getPlaceTrends(23424977);
            Trends dailyTrends = twitter.getPlaceTrends(woeid);
