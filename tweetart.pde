@@ -21,6 +21,7 @@ ResponseList<Trends> dailyTrends;
 Trend[] trend;
 int currentTweet;
 int currentTrend;
+int currentRefresh;
 PFont f;
 
 
@@ -32,11 +33,28 @@ int woeid = 2450022; // Miami
 
 void setup() {
     size(1200,710);
+    smooth();
+    // Initialize box2d physics and create the world
+    box2d = new Box2DProcessing(this);
+    box2d.createWorld();
+    //Custom gravity
+    box2d.setGravity(0, -10);
+    
+    // Create ArrayLists  
+    boxes = new ArrayList<Box>();
+    boundaries = new ArrayList<Boundary>();
 
+    // Add boundaries
+    boundaries.add(new Boundary(width/4,height-5,width/2-50,10));
+    boundaries.add(new Boundary(3*width/4,height-50,width/2-50,10));
+    
+    
+    // Connect to Twitter, get the data 
     twitterConnect();
     getTrends();
     currentTweet = 0;
     currentTrend = 0;
+    currentRefresh = 0;
     getNewTweets();
 
     thread("refreshTweets");
@@ -45,7 +63,7 @@ void setup() {
 
   // Set the font
   printArray(PFont.list());
-  f = createFont("Nexa Light.otf", 18);
+  f = createFont("Nexa Light.otf", 12);
   textFont(f);
 
 
@@ -58,7 +76,7 @@ void refreshTweets() {
     {
         getNewTweets();
         println("Updated Tweets " + currentTweet);
-        currentTweet ++;
+        currentRefresh ++;
         delay(30000);
     }
 }
