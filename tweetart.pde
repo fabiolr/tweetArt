@@ -11,11 +11,17 @@ import org.jbox2d.collision.shapes.*;
 import org.jbox2d.common.*;
 import org.jbox2d.dynamics.*;
 
+import org.jbox2d.dynamics.joints.*;
+import org.jbox2d.collision.shapes.Shape;
+import org.jbox2d.dynamics.contacts.*;
+
+
 Box2DProcessing box2d;
 
-// A list we'll use to track fixed objects
+
+// A list for fixed boundaries
 ArrayList<Boundary> boundaries;
-// A list for all of our rectangles
+// A list for falling tweets' boxes
 ArrayList<Box> boxes;
 
 Twitter twitter;
@@ -25,6 +31,8 @@ Trend[] trend;
 int currentTweet;
 int currentTrend;
 int currentRefresh;
+int defColor = 102;
+int bdColor = 122;
 PFont f;
 
 
@@ -47,11 +55,29 @@ void setup() {
     boxes = new ArrayList<Box>();
     boundaries = new ArrayList<Boundary>();
 
-    // Add boundaries
-    boundaries.add(new Boundary(width/4,height-5,width/2-50,10));
-    boundaries.add(new Boundary(3*width/4,height-50,width/2-50,10));
-    
-    
+
+  // Add a bunch of fixed boundaries
+  
+  // Left Floor + Edge
+  boundaries.add(new Boundary(bdColor, width/4,height-10,width/2-50,10));  
+  boundaries.add(new Boundary(bdColor, (width/4)-(width/2-60)/2,height-60,10,100));
+  
+  
+  // Right Floor + Edge
+  boundaries.add(new Boundary(bdColor, 3*width/4,height-60,width/2-50,10));
+  boundaries.add(new Boundary(bdColor, (3*width/4)+(width/2-60)/2,height-110,10,100));
+
+// center nose
+  boundaries.add(new Boundary(bdColor, (width/2),height/2,10,10));
+  boundaries.add(new Boundary(bdColor, (width/2+10),height/2-10,10,10));
+  boundaries.add(new Boundary(bdColor, (width/2-10),height/2-10,10,10));
+
+// eyes
+  boundaries.add(new Boundary(bdColor, (width/3),height/2-100,30,10));
+  boundaries.add(new Boundary(bdColor, (2*width/3),height/2-100,30,10));
+  
+  
+
     // Connect to Twitter, get the data 
     twitterConnect();
 
@@ -67,7 +93,7 @@ void setup() {
 
   // Set the font
  // printArray(PFont.list());
-  f = createFont("Nexa Light.otf", 12);
+  f = createFont("Nexa Light.otf", 14);
   textFont(f);
 
 

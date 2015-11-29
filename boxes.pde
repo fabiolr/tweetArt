@@ -3,19 +3,22 @@
 
 class Box {
 
-  // We need to keep track of a Body and a width and height
+  // We need to keep track of a Body and a width and height, the text and the color
   Body body;
   float w;
   float h;
   String boxText;
+  int boxColor;
 
   // Constructor
-  Box(String bt, float x, float y) {
+  Box(int bc, String bt, float x, float y) {
     w = random(80, 120);
     h = random(50, 80);
     // Add the box to the box2d world
     makeBody(new Vec2(x, y), w, h);
     boxText = bt;
+    boxColor = bc;
+    
   }
 
   // This function removes the particle from the box2d world
@@ -46,10 +49,10 @@ class Box {
     pushMatrix();
     translate(pos.x, pos.y);
     rotate(-a);
-    fill(175);
-    stroke(0);
+    fill(boxColor);
+    stroke(boxColor);
     rect(0, 0, w, h);
-    fill(0);
+    fill(200);
     text(boxText,1,1,w,h);
     popMatrix();
   }

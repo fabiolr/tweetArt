@@ -7,15 +7,17 @@ class Boundary {
   float y;
   float w;
   float h;
+  int bdColor; 
   
   // But we also have to make a body for box2d to know about it
   Body b;
 
-  Boundary(float x_,float y_, float w_, float h_) {
+  Boundary(int bc, float x_,float y_, float w_, float h_) {
     x = x_;
     y = y_;
     w = w_;
     h = h_;
+    bdColor = bc;
 
     // Define the polygon
     PolygonShape sd = new PolygonShape();
@@ -38,8 +40,8 @@ class Boundary {
 
   // Draw  boundary
   void display() {
-    fill(0);
-    stroke(0);
+    fill(bdColor);
+    //stroke(0);
     rectMode(CENTER);
     rect(x,y,w,h);
   }
