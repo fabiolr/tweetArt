@@ -9,16 +9,17 @@ class Box {
   float h;
   String boxText;
   int boxColor;
+  color textColor;
 
   // Constructor
-  Box(int bc, String bt, float x, float y) {
+  Box(color tc, int bc, String bt, float x, float y) {
     w = random(80, 120);
     h = random(50, 80);
     // Add the box to the box2d world
     makeBody(new Vec2(x, y), w, h);
     boxText = bt;
     boxColor = bc;
-    
+    textColor = tc;
   }
 
   // This function removes the particle from the box2d world
@@ -52,7 +53,7 @@ class Box {
     fill(boxColor);
     stroke(boxColor);
     rect(0, 0, w, h);
-    fill(200);
+    fill(textColor);
     text(boxText,1,1,w,h);
     popMatrix();
   }

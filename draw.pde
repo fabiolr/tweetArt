@@ -2,6 +2,8 @@
 
 void draw() {
     
+    int tweetColor = int(random (50,190));
+
     // stepping...
   box2d.step();
   
@@ -17,7 +19,7 @@ void draw() {
   
 // tweet spawns every so often, increase constant to increase density.
   if (random(1) < 0.01) {
-    Box p = new Box(defColor, status.getText(),width/2,30);  // position of spawn spot
+    Box p = new Box(tweetColor, defColor, status.getText(),width/2,30);  // position of spawn spot
     boxes.add(p);
   }
   
@@ -44,7 +46,7 @@ text(trend[6].getName(), 20, 70, 300, 200);
 text(trend[7].getName(), 20, 80, 300, 200);
 text(trend[8].getName(), 20, 90, 300, 200);
 text(trend[9].getName(), 20, 100, 300, 200);
-text(trend[10].getName(), 20, 110, 300, 200);
+text(trend[0].getName(), 20, 110, 300, 200);
 
 
 
